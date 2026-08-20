@@ -41,4 +41,12 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
             @Param("team") String team,
             @Param("venue") String venue
     );
+    @Query("SELECT DISTINCT m.team1 FROM Match m ORDER BY m.team1")
+    List<String> findDistinctTeam1s();
+
+    @Query("SELECT DISTINCT m.team2 FROM Match m ORDER BY m.team2")
+    List<String> findDistinctTeam2s();
+
+    @Query("SELECT DISTINCT m.venue FROM Match m ORDER BY m.venue")
+    List<String> findDistinctVenues();
 }

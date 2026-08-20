@@ -1,5 +1,6 @@
 package com.hozzat.hozzat;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -8,9 +9,11 @@ public class MlPredictionClient {
 
     private final RestClient restClient;
 
-    public MlPredictionClient() {
+    public MlPredictionClient(
+            @Value("${ml.service.url}") String mlServiceUrl) {
+
         this.restClient = RestClient.builder()
-                .baseUrl("http://localhost:5000")
+                .baseUrl(mlServiceUrl)
                 .build();
     }
 

@@ -49,4 +49,13 @@ public class MatchController {
 
         return matchService.getVenueStats(team, venue);
     }
+    @GetMapping("/teams")
+    public List<String> getAllTeams() {
+        return matchService.getAllTeams();
+    }
+
+    @GetMapping("/venues")
+    public List<String> getAllVenues() {
+        return matchService.getAllVenues();
+    }
 }

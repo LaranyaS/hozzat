@@ -143,4 +143,27 @@ public class MatchService {
                 winPercentage
         );
     }
+    public List<String> getAllTeams() {
+
+        java.util.Set<String> teams = new java.util.TreeSet<>();
+
+        teams.addAll(matchRepository.findDistinctTeam1s());
+        teams.addAll(matchRepository.findDistinctTeam2s());
+
+        return new java.util.ArrayList<>(teams);
+    }
+
+    public List<String> getAllVenues() {
+        return matchRepository.findDistinctVenues();
+    }
+
+    public boolean isKnownTeam(String team) {
+        return getAllTeams().stream()
+                .anyMatch(t -> t.equalsIgnoreCase(team));
+    }
+
+    public boolean isKnownVenue(String venue) {
+        return getAllVenues().stream()
+                .anyMatch(v -> v.equalsIgnoreCase(venue));
+    }
 }
