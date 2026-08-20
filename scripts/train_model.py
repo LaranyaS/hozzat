@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import joblib
+import os
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.ensemble import RandomForestClassifier
@@ -228,3 +230,22 @@ print(f"Naive baseline:       {naive_accuracy * 100:.2f}%")
 print(f"Rule-based baseline:  {rule_accuracy * 100:.2f}%")
 print(f"Logistic Regression:  {accuracy * 100:.2f}%")
 print(f"Random Forest:        {rf_accuracy * 100:.2f}%")
+# ============================================================
+# 15. SAVE TRAINED ML MODEL
+# ============================================================
+
+os.makedirs("models", exist_ok=True)
+
+joblib.dump(
+    rf_model,
+    "models/random_forest_model.joblib"
+)
+
+joblib.dump(
+    feature_columns,
+    "models/feature_columns.joblib"
+)
+
+print("\nRandom Forest model saved!")
+print("Model: models/random_forest_model.joblib")
+print("Features: models/feature_columns.joblib")

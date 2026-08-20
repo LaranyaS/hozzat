@@ -23,4 +23,16 @@ public class PredictionController {
 
         return predictionService.predict(team1, team2, venue);
     }
+    @GetMapping("/ml")
+    public MlMatchPredictionResult predictWithMl(
+            @RequestParam String team1,
+            @RequestParam String team2,
+            @RequestParam String venue) {
+
+        return predictionService.predictWithMl(
+                team1,
+                team2,
+                venue
+        );
+    }
 }
